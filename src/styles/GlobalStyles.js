@@ -14,6 +14,11 @@ const GlobalStyles = createGlobalStyle(globalStyles, `
    .ReactModal__Overlay--before-close{
      transform: scale(0);
    }
+    html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 `)
 
 export default GlobalStyles

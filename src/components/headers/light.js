@@ -91,7 +91,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
   const defaultLogoLink = (
     <LogoLink href="/">
       {/* <img src={logo} alt="logo" /> */}
-      OptimiCv
+      optimiCV
     </LogoLink>
   );
 
@@ -99,7 +99,7 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
   links = links || defaultLinks;
 
   return (
-    <Header className={className || "header-light"}>
+    <Header style={{marginTop:"-20px", marginBottom:"-50px"}} className={className || "header-light"}>
       <DesktopNavLinks css={collapseBreakpointCss.desktopNavLinks}>
         {logoLink}
         {links}

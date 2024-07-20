@@ -279,9 +279,9 @@ module.exports = {
         '"Segoe UI Symbol"',
         '"Noto Color Emoji"',
       ],
-      orbitron: ['Orbitron', 'sans-serif'],
       serif: ['Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
       mono: ['Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
+      orbitron: ['Orbitron', 'sans-serif'],
     },
     fontSize: {
       xs: '0.75rem',

@@ -22,7 +22,7 @@ const Paragraph = tw.p`my-5 lg:my-8 text-base xl:text-lg`;
 const Actions = styled.div`
   ${tw`relative max-w-md text-center mx-auto lg:mx-0`}
   input {
-    ${tw`sm:pr-48 pl-8 py-4 sm:py-5 rounded-full border-2 w-full font-medium focus:outline-none transition duration-300  focus:border-primary-500 hover:border-gray-500`}
+    ${tw`sm:pr-48 pl-8 py-4 sm:py-5 rounded-full border-2 w-full font-medium focus:outline-none transition duration-300  focus:border-black hover:border-gray-500`}
   }
   button {
     ${tw`w-full sm:absolute right-0 top-0 bottom-0 bg-black text-white font-bold mr-2 my-4 sm:my-2 rounded-full py-4 flex items-center justify-center sm:w-40 sm:leading-none focus:outline-none hover:bg-gray-700 transition duration-300`}
@@ -76,8 +76,8 @@ export default ({ roundedHeaderButton }) => {
 
   return (
     <>
-      <Header roundedHeaderButton={roundedHeaderButton} />
-      <Container>
+      <Header style={{backgroundColor:"pink"}} roundedHeaderButton={roundedHeaderButton} />
+      <Container style={{marginBottom:"-80px"}}>
         <TwoColumn>
           <LeftColumn>
             <Heading>
@@ -112,10 +112,7 @@ export default ({ roundedHeaderButton }) => {
             {isOtpVerified && (
               <p tw="mt-4 text-green-500 font-bold">Registered Successfully!</p>
             )}
-            <CustomersLogoStrip>
-              <p>Trusted by Our Users</p>
-              <img src={CustomersLogoStripImage} alt="Trusted Users" />
-            </CustomersLogoStrip>
+          
           </LeftColumn>
           <RightColumn>
             <IllustrationContainer>
