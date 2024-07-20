@@ -19,7 +19,7 @@ import Features from "components/features/ThreeColWithSideImage.js";
 // import { ReactComponent as MoneyIcon } from "feather-icons/dist/icons/dollar-sign.svg";
 
 export default () => {
-  const Subheading = tw.span`uppercase tracking-widest font-bold text-primary-500`;
+  const Subheading = tw.span`uppercase tracking-widest font-bold text-gray-700`;
   const HighlightedText = tw.span`text-gray-700`;
 
   return (
