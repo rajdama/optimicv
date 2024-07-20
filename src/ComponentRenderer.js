@@ -11,7 +11,7 @@ export const components = {
     SaaSProductLandingPage: {
       component: SaaSProductLandingPage,
       imageSrc: SaaSProductLandingPageImageSrc,
-      url: "/components/landingPages/SaaSProductLandingPage",
+      url: "/landingPage",
     },
   },
 };

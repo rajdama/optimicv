@@ -100,9 +100,9 @@ import GlobalStyles from 'styles/GlobalStyles';
 // import TermsOfServicePage from "pages/TermsOfService.js";
 // import PrivacyPolicyPage from "pages/PrivacyPolicy.js";
 
-import ComponentRenderer from "ComponentRenderer.js";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import SaaSProductLandingPage from "demos/SaaSProductLandingPage";
 
 export default function App() {
   // If you want to disable the animation just use the disabled `prop` like below on your page's component
@@ -114,8 +114,7 @@ export default function App() {
       <GlobalStyles />
       <Router>
         <Routes>
-          <Route path="/components/:type/:subtype/:name" element={<ComponentRenderer />} />
-          <Route path="/components/:type/:name" element={<ComponentRenderer />} />
+          <Route path="/" element={<SaaSProductLandingPage />} />
           {/* <Route path="/thank-you" element={<ThankYouPage />} />
           <Route path="/" element={<MainLandingPage />} /> */}
         </Routes>
