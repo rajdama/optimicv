@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled,{ keyframes } from "styled-components";
 import tw from "twin.macro";
 //eslint-disable-next-line
 import { css } from "styled-components/macro";
@@ -42,6 +42,22 @@ const CustomersLogoStrip = styled.div`
   img {
     ${tw`mt-4 w-full lg:pr-16 xl:pr-32 opacity-50`}
   }
+`;
+
+// Define the keyframes
+const upDown = keyframes`
+  0% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+`;
+
+// Create a styled-component for the image with the animation
+const AnimatedImage = styled.img`
+  ${tw`min-w-0 w-full max-w-lg xl:max-w-3xl`}
+  animation: ${upDown} 2s infinite alternate;
 `;
 
 export default ({ roundedHeaderButton }) => {
@@ -114,8 +130,8 @@ export default ({ roundedHeaderButton }) => {
           
           </LeftColumn>
           <RightColumn>
-            <IllustrationContainer>
-              <img tw="min-w-0 w-full max-w-lg xl:max-w-3xl" src={DesignIllustration} alt="Design Illustration" />
+          <IllustrationContainer>
+              <AnimatedImage src={DesignIllustration} alt="Design Illustration" />
             </IllustrationContainer>
           </RightColumn>
         </TwoColumn>
