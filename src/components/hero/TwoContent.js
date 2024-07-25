@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import tw from "twin.macro";
 import "demos/style.css";
 import { ReactComponent as SvgDecoratorBlob1 } from "../../images/svg-decorator-blob-1.svg";
@@ -21,12 +21,6 @@ const ImageWrapper = styled.div`
   }
 `;
 
-const AnimatedImage = styled.img`
-  ${tw`object-cover`}
-  width: 100%;
-  height: auto;
-`;
-
 const TwoColumn = styled.div`
   ${tw`flex flex-col lg:flex-row lg:items-stretch max-w-screen-xl mx-auto py-10 md:py-12`}
   margin-bottom: 1rem;
@@ -36,6 +30,22 @@ const TwoColumn = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
   }
+`;
+
+const upDown = keyframes`
+  0% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+`;
+
+const AnimatedImage = styled.img`
+  ${tw`object-cover`}
+  width: 100%;
+  height: auto;
+  animation: ${upDown} 2s infinite alternate;
 `;
 
 const LeftColumn = styled.div`
