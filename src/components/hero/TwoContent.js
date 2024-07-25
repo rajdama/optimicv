@@ -3,26 +3,29 @@ import styled, { keyframes } from "styled-components";
 import tw from "twin.macro";
 import "demos/style.css";
 import { ReactComponent as SvgDecoratorBlob1 } from "../../images/svg-decorator-blob-1.svg";
-import DesignIllustration from "../../images/resume.svg";
+import QuestionIllustration from "../../images/question.svg";
+import SolutionIllustration from "../../images/solution.svg";
+import ProfitIllustration from "../../images/profit.svg";
+import PathIllustration from "../../images/path.svg";
 import Card from "demos/Card.js";
 
 const Container = tw.div`relative`;
 
-// Apply bottom margin only for mobile devices, dynamically adjustable
 const ImageWrapper = styled.div`
   ${tw`w-full flex justify-center items-end`}
-  max-width: 100%;
+  width: 70%; /* Default width for desktop view */
   height: auto;
-  margin-bottom: ${(props) =>
-    props.marginBottom || "0"}; /* Apply dynamic margin-bottom */
 
   @media (max-width: 768px) {
-    ${tw`mb-20`}/* Default margin-bottom for mobile */
+    ${tw`w-full mb-20`} /* Width for mobile view */
+    margin-right: ${(props) => props.marginRight || "0"};
+    margin-left: ${(props) => props.marginLeft || "0"};
+    margin-top: ${(props) => props.marginTop || "0"};
   }
 `;
 
 const TwoColumn = styled.div`
-  ${tw`flex flex-col lg:flex-row lg:items-stretch max-w-screen-xl mx-auto py-10 md:py-12`}
+  ${tw`flex flex-col lg:flex-row lg:items-center max-w-screen-xl mx-auto py-10 md:py-12`}
   margin-bottom: 1rem;
 
   @media (max-width: 768px) {
@@ -45,27 +48,17 @@ const AnimatedImage = styled.img`
   ${tw`object-cover`}
   width: 100%;
   height: auto;
-  animation: ${upDown} 2s infinite alternate;
 `;
 
 const LeftColumn = styled.div`
-  ${tw`relative lg:w-1/2 max-w-lg mx-auto lg:max-w-none`}
-  display: flex;
-  justify-content: center;
-  align-items: flex-end; /* Center content vertically */
-
+  ${tw`relative lg:w-1/2 max-w-lg mx-auto lg:max-w-none flex justify-center items-center`}
   @media (max-width: 768px) {
     ${tw`w-1/2`}
   }
 `;
 
 const RightColumn = styled.div`
-  ${tw`relative mt-6 lg:mt-0 flex-1 flex flex-col justify-center lg:self-end`}
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  align-items: flex-end; /* Center content vertically */
-
+  ${tw`relative mt-6 lg:mt-0 flex-1 flex flex-col justify-center lg:self-center`}
   @media (max-width: 768px) {
     ${tw`w-1/2`}
   }
@@ -77,6 +70,21 @@ const DecoratorBlob1 = styled(SvgDecoratorBlob1)`
   ${tw`pointer-events-none opacity-5 absolute left-0 bottom-0 h-64 w-64 transform -translate-x-2/3 -z-10`}
 `;
 
+const getImageByIndex = (index) => {
+  switch (index) {
+    case 0:
+      return QuestionIllustration;
+    case 1:
+      return SolutionIllustration;
+    case 2:
+      return ProfitIllustration;
+    case 3:
+      return PathIllustration;
+    default:
+      return null;
+  }
+};
+
 export default () => {
   const items = [
     "What we solve: Our AI-driven resume maker helps applicants craft tailored resumes for specific job descriptions, boosting their ATS scores and improving their chances of getting interview invitations.",
@@ -86,49 +94,43 @@ export default () => {
   ];
 
   return (
-    <>
-      <Container>
-        <div className="App">
-          {items.map((item, i) => (
-            <TwoColumn key={i}>
-              {i % 2 === 0 ? (
-                <>
-                  <LeftColumn>
-                    <ImageWrapper marginBottom="20px">
-                      {" "}
-                      {/* Example margin */}
-                      <AnimatedImage
-                        src={DesignIllustration}
-                        alt="Design Illustration"
-                      />
-                    </ImageWrapper>
-                  </LeftColumn>
-                  <RightColumn>
-                    <Card text={item} index={i} />
-                  </RightColumn>
-                </>
-              ) : (
-                <>
-                  <LeftColumn>
-                    <Card text={item} index={i} />
-                  </LeftColumn>
-                  <RightColumn>
-                    <ImageWrapper marginBottom="30px">
-                      {" "}
-                      {/* Example margin */}
-                      <AnimatedImage
-                        src={DesignIllustration}
-                        alt="Design Illustration"
-                      />
-                    </ImageWrapper>
-                  </RightColumn>
-                </>
-              )}
-            </TwoColumn>
-          ))}
-        </div>
-        <DecoratorBlob1 />
-      </Container>
-    </>
+    <Container style={{ marginTop: "-100px" }}>
+      <div className="App">
+        {items.map((item, i) => (
+          <TwoColumn key={i} style={{ marginBottom: "-50px" }}>
+            {i % 2 === 0 ? (
+              <>
+                <LeftColumn>
+                  <ImageWrapper marginRight="10px" marginTop="100px">
+                    <AnimatedImage
+                      src={getImageByIndex(i)}
+                      alt="Illustration"
+                    />
+                  </ImageWrapper>
+                </LeftColumn>
+                <RightColumn>
+                  <Card text={item} index={i} />
+                </RightColumn>
+              </>
+            ) : (
+              <>
+                <LeftColumn style={{ marginRight: "50px" }}>
+                  <Card text={item} index={i} />
+                </LeftColumn>
+                <RightColumn>
+                  <ImageWrapper marginLeft="10px" marginTop="50px">
+                    <AnimatedImage
+                      src={getImageByIndex(i)}
+                      alt="Illustration"
+                    />
+                  </ImageWrapper>
+                </RightColumn>
+              </>
+            )}
+          </TwoColumn>
+        ))}
+      </div>
+      <DecoratorBlob1 />
+    </Container>
   );
 };
