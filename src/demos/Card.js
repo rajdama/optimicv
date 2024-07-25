@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useInView } from "framer-motion";
 import { motion } from "framer-motion";
 import styled, { keyframes } from "styled-components";
@@ -22,9 +22,13 @@ const CardContainer = styled(motion.div)`
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  height: 220px;
+  height: auto; /* Adjust height to be dynamic */
   overflow: hidden;
   box-sizing: border-box;
+
+  @media (max-width: 400px) {
+    ${tw`p-4`}/* Adjust padding for very small screens */
+  }
 `;
 
 const Title = styled.h2`
@@ -39,6 +43,11 @@ const Title = styled.h2`
   @media (max-width: 480px) {
     font-size: 0.75rem;
   }
+
+  @media (max-width: 400px) {
+    font-size: 0.6rem; /* Further reduce font size for very small screens */
+    margin-bottom: 0.5rem; /* Adjust margin-bottom for small screens */
+  }
 `;
 
 const Underline = styled.div`
@@ -50,11 +59,17 @@ const Underline = styled.div`
   bottom: -5px;
   left: 50%;
   transform: translateX(-50%);
+
+  @media (max-width: 400px) {
+    bottom: -3px; /* Adjust position for very small screens */
+  }
 `;
 
 const Content = styled.p`
   ${tw`text-base`}
   font-size: 1rem;
+  word-break: break-word;
+  hyphens: auto;
 
   @media (max-width: 768px) {
     font-size: 0.75rem;
@@ -63,26 +78,46 @@ const Content = styled.p`
   @media (max-width: 480px) {
     font-size: 0.6rem;
   }
+
+  @media (max-width: 400px) {
+    font-size: 0.5rem; /* Further reduce font size for very small screens */
+  }
 `;
+
+const insertSoftHyphens = (text) => {
+  return text.replace(/([a-z]{5,})/gi, (word) => {
+    return word.split("").join("\u00AD");
+  });
+};
 
 function Card({ text, index }) {
   const [title, content] = text.split(": ", 2);
   const ref = useRef(null);
   const isInView = useInView(ref);
+  const [hasBeenViewed, setHasBeenViewed] = useState(false);
+  const hyphenatedContent = insertSoftHyphens(content);
+
+  if (isInView && !hasBeenViewed) {
+    setHasBeenViewed(true);
+  }
 
   return (
     <CardContainer
       initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
-      whileInView={{ opacity: 1, x: 0, transition: { duration: 1 } }}
-      viewport={{ once: false }}
+      animate={{
+        opacity: isInView ? 1 : 0,
+        x: isInView ? 0 : index % 2 === 0 ? 50 : -50,
+      }}
+      transition={{ duration: 1 }}
+      viewport={{ once: true }}
     >
       <Title ref={ref}>
         <div style={{ marginBottom: "8px" }}>{title}</div>
         <Underline style={{ marginBottom: "8px" }} />
       </Title>
       <Content>
-        {isInView &&
-          content.split(" ").map((el, i) => (
+        {hasBeenViewed &&
+          hyphenatedContent.split(" ").map((el, i) => (
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
