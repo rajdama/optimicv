@@ -3,6 +3,8 @@ import tw, { styled, css } from "twin.macro";
 import AnimationRevealPage from "helpers/AnimationRevealPage.js";
 import Hero from "components/hero/TwoColumnWithInput.js";
 import Features from "components/features/ThreeColWithSideImage.js";
+import "./style.css";
+import TwoContent from "components/hero/TwoContent";
 
 const Subheading = tw.span`uppercase tracking-widest font-bold text-gray-700`;
 const HighlightedText = tw.span`text-gray-700`;
@@ -30,7 +32,12 @@ export default () => {
           </ResponsiveHeading>
         }
       />
-      {/* Other components can follow here */}
+      {/* <div className="App">
+        {items.map((item, i) => (
+          <Card key={i} text={item} index={i} />
+        ))}
+      </div> */}
+      <TwoContent />
     </AnimationRevealPage>
   );
 };

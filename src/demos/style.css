@@ -1,0 +1,54 @@
+body {
+  overflow-x: hidden;
+}
+.App {
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0px 10px 10px 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #706767;
+}
+
+.card:nth-child(odd) {
+  align-self: flex-end;
+  background-color: #2f2a45;
+}
+
+.card-text {
+  font-size: 28px;
+  color: #fff;
+}
+
+.card-text-2 {
+  font-family: sans-serif;
+
+  color: #fff;
+}
+
+/* Styles for the image container */
+.illustration-container {
+  width: 100%;
+  max-width: 400px; /* Adjust as needed */
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Styles for the image */
+.animated-image {
+  width: 400px; /* Fixed width */
+  height: 300px; /* Fixed height */
+  object-fit: cover; /* Ensure the image covers the area without distortion */
+}
