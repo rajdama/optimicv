@@ -52,16 +52,14 @@ const Title = styled.h2`
 
 const Underline = styled.div`
   ${tw`h-1 bg-blue-500`}
-  width: 50%;
+  width: 60%;
   margin: 0 auto;
-  animation: ${shrinkExpand} 2s ease-in-out infinite;
   position: absolute;
   bottom: -5px;
   left: 50%;
   transform: translateX(-50%);
 
   @media (max-width: 400px) {
-    bottom: -3px; /* Adjust position for very small screens */
   }
 `;
 
@@ -70,17 +68,21 @@ const Content = styled.p`
   font-size: 1rem;
   word-break: break-word;
   hyphens: auto;
+  line-height: 1.5; /* Default line-height */
 
   @media (max-width: 768px) {
     font-size: 0.75rem;
+    line-height: 1.4; /* Reduced line-height for smaller screens */
   }
 
   @media (max-width: 480px) {
     font-size: 0.6rem;
+    line-height: 1.3; /* Further reduced line-height for very small screens */
   }
 
   @media (max-width: 400px) {
     font-size: 0.5rem; /* Further reduce font size for very small screens */
+    line-height: 2; /* Further reduced line-height for very small screens */
   }
 `;
 

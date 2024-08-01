@@ -32,11 +32,7 @@ export default () => {
           </ResponsiveHeading>
         }
       />
-      {/* <div className="App">
-        {items.map((item, i) => (
-          <Card key={i} text={item} index={i} />
-        ))}
-      </div> */}
+
       <TwoContent />
     </AnimationRevealPage>
   );

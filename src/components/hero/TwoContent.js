@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import tw from "twin.macro";
 import "demos/style.css";
@@ -8,6 +8,11 @@ import SolutionIllustration from "../../images/solution.svg";
 import ProfitIllustration from "../../images/profit.svg";
 import PathIllustration from "../../images/path.svg";
 import Card from "demos/Card.js";
+import "../../ScrollEffect.css"; // Create a CSS file for styles
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gsap from "gsap";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Container = tw.div`relative`;
 
@@ -21,6 +26,7 @@ const ImageWrapper = styled.div`
     margin-right: ${(props) => props.marginRight || "0"};
     margin-left: ${(props) => props.marginLeft || "0"};
     margin-top: ${(props) => props.marginTop || "0"};
+    width: 80%;
   }
 `;
 
@@ -92,12 +98,61 @@ export default () => {
     "What user gains: Our tool saves applicants time and effort by creating tailored resumes, enabling them to efficiently apply to more job opportunities and improve their chances of success.",
     "How to use: Applicants upload their resume and job description. Our AI then optimizes the resume to align with job requirements, allowing them to download it in various formats.",
   ];
+  const [currentPanel, setCurrentPanel] = useState(0);
 
+  useEffect(() => {
+    ScrollTrigger.defaults({
+      toggleActions: "restart pause resume pause",
+      scroller: ".container",
+    });
+
+    gsap.to(".orange p", {
+      scrollTrigger: ".orange",
+      duration: 2,
+      rotation: 360,
+    });
+
+    gsap.to(".red", {
+      scrollTrigger: {
+        trigger: ".red",
+        toggleActions: "restart pause reverse pause",
+      },
+      duration: 1,
+      backgroundColor: "#FFA500",
+      ease: "none",
+    });
+
+    gsap.to(".yoyo p", {
+      scrollTrigger: ".yoyo",
+      scale: 2,
+      repeat: -1,
+      yoyo: true,
+      ease: "power2",
+    });
+
+    const container = document.querySelector(".container");
+    const handleScroll = () => {
+      const panelHeight = window.innerHeight;
+      const scrollTop = container.scrollTop;
+      const newPanel = Math.round(scrollTop / panelHeight);
+      setCurrentPanel(newPanel);
+    };
+
+    container.addEventListener("scroll", handleScroll);
+
+    return () => {
+      container.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <Container style={{ marginTop: "-100px" }}>
-      <div className="App">
+      <div className="App container">
         {items.map((item, i) => (
-          <TwoColumn key={i} style={{ marginBottom: "-50px" }}>
+          <TwoColumn
+            className={`panel blue ${currentPanel === i ? "active" : ""}`}
+            key={i}
+            style={{ marginTop: "50px" }}
+          >
             {i % 2 === 0 ? (
               <>
                 <LeftColumn>
@@ -114,7 +169,7 @@ export default () => {
               </>
             ) : (
               <>
-                <LeftColumn style={{ marginRight: "50px" }}>
+                <LeftColumn style={{ marginRight: "45px" }}>
                   <Card text={item} index={i} />
                 </LeftColumn>
                 <RightColumn>

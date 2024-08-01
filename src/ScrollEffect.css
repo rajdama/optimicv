@@ -1,0 +1,54 @@
+/* ScrollEffect.css */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-height: 60vh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+
+  /* Hide scrollbar for WebKit browsers */
+  scrollbar-width: none; /* Firefox */
+}
+
+.container::-webkit-scrollbar {
+  display: none; /* WebKit browsers */
+}
+
+.panel {
+  display: flex; /* Make the panel a flex container */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  scroll-snap-align: start;
+  height: 100vh;
+  text-align: center; /* Center text inside the panel */
+}
+
+.red {
+  background-color: #cf3535;
+  background-image: none;
+}
+
+.panel.blue {
+  /* background-color: #1e90ff; */
+}
+
+.panel.orange {
+  background-color: #ffa500;
+}
+
+.panel.yoyo {
+  background-color: #1e90ff; /* Same color as the first blue panel */
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
