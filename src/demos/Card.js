@@ -66,8 +66,7 @@ const Underline = styled.div`
 const Content = styled.p`
   ${tw`text-base`}
   font-size: 1rem;
-  word-break: break-word;
-  hyphens: auto;
+
   line-height: 1.5; /* Default line-height */
 
   @media (max-width: 768px) {
@@ -81,8 +80,9 @@ const Content = styled.p`
   }
 
   @media (max-width: 400px) {
+    text-align: left;
     font-size: 0.5rem; /* Further reduce font size for very small screens */
-    line-height: 2; /* Further reduced line-height for very small screens */
+    line-height: 1.6; /* Further reduced line-height for very small screens */
   }
 `;
 
